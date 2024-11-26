@@ -23,12 +23,14 @@
     			3. save the total remaining calrories
 */
 
+int remained_calories = -1300;	// calculate remaining calories
+
 void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
 	int i;
 	
 	// calculate remaining calroies using structure HealthData and pointer health_data
 	// women basal metabolic rate : 1300 kcal (constant)
-	int remained_calories = (health_data->total_calories_intake) - 1300 - (health_data->total_calories_burned);	
+	remained_calories = (health_data->total_calories_intake) - 1300 - (health_data->total_calories_burned);	
 	
     FILE* file = fopen(HEALTHFILEPATH, "w");
     if (file == NULL) {
@@ -44,17 +46,26 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
         	    health_data->exercises[i].exercise_name, 
                 health_data->exercises[i].calories_burned_per_minute); 
     }
+    fprintf(file, "Total calories burned - %d kcal", health_data->total_calories_burned);	// save total burned calories through HealthData (structure) and health_data (pointer)
+    
+    // adjust line spacing
+	fprintf(file, "\n");
+    fprintf(file, "\n");
     
     // ToCode: to save the chosen diet and total calories intake 
     fprintf(file, "\n[Diets] \n");
 	for (i = 0; i < health_data->diet_count; i++) 
 	{
-        fprintf(file, "- %s: %d kcal intake\n", 						// save selected diets and intaken calories through eating
+        fprintf(file, "%s - %d kcal intake\n", 						// save selected diets and intaken calories through eating
             	health_data->diet[i].food_name, 
             	health_data->diet[i].calories_intake); 
     }
-
-
+	fprintf(file, "Total calories intake - %d kcal", health_data->total_calories_intake);	// save total intaken calories through HealthData (structure) and health_data (pointer)
+	
+	// adjust line spacing
+	fprintf(file, "\n");
+	fprintf(file, "\n");
+	
     // ToCode: to save the total remaining calrories
     fprintf(file, "\n[Total] \n");
     
@@ -79,31 +90,73 @@ void printHealthData(const HealthData* health_data) {
 	
 	// ToCode: to print out the saved history of exercises
 	printf("=========================== History of Exercise =======================\n");
-  
-  
+	
+	// print history of exercise using exercise (structure) and health_data (pointer)
+	for (i = 0; i < health_data->exercise_count; i++) 	
+	{
+        printf("Exercise: %s, Calories burned : %d kcal \n", 								
+        	    health_data->exercises[i].exercise_name, 
+                health_data->exercises[i].calories_burned_per_minute); 
+    }
     printf("=======================================================================\n");
+
+	
 
     // ToCode: to print out the saved history of diets
     printf("============================= History of Diet =========================\n");
-
-
+	
+	// print history of diets using diet (structure) and health_data (pointer)
+	for (i = 0; i < health_data->diet_count; i++) 
+	{
+        printf("Food: %s, Calories intake: %d kcal \n", 						
+            	health_data->diet[i].food_name, 
+            	health_data->diet[i].calories_intake); 
+    }
     printf("=======================================================================\n");
 
 
 	// ToCode: to print out the saved history of calories including basal metabolic rate, 
 	// total calories burned, total calories intake, and the remaining calories
 	printf("============================== Total Calories =========================\n");
- 
- 
+ 	printf("Basal Metabolic Rate: 1300 kcal\n");
+ 	printf("Total calories burned: %d kcal\n", health_data->total_calories_burned);			// print total burned calories using HealthData (structure) and health_data (pointer)
+ 	printf("Total calories intake: %d kcal\n", health_data->total_calories_intake);			// print total intaken calories using HealthData (structure) and health_data (pointer)
+ 	printf("The remaining ccalories: %d kcal\n", remained_calories);
     printf("=======================================================================\n \n");
     
 	
 	// ToCode: to print out the recommendtaion depending on the current total calories burned and intake    
     
-    
-	 printf("=======================================================================\n");
+    // check remained calories and print recomment
+    if (remained_calories == 0)
+    	printf("You have consumed all your calories for today!\n");
+    	// need to plus break the system
+    	
+    else if (remained_calories <0)
+    	 {
+    	 	printf("[Warning] Too few calories!\n");
+    	 	
+    	 	// check total intaken calories and print recomment
+    	 	if (health_data->total_calories_intake == 1300)
+    	 		printf("Your total calorie intake for today has reached your goal!\n");
+    	 	else if (health_data->total_calories_intake < 1300 )
+    	 		printf("Your total calorie intake for today has not reached your goal, remember to eat more!!\n");
+    	 	else if (health_data->total_calories_intake > 1300 )
+    	 		printf("You have eaten more calories than planned today, but you exercised too much!\n");
+    	 		
+		 }
+	else if (remained_calories >0)
+		{
+			printf("Please exercise for your health!\n");
+			
+			// check total intaken calories and print recomment
+			if (health_data->total_calories_intake == 1300)
+    	 		printf("Your total calorie intake for today has reached your goal!\n");
+    	 	else if (health_data->total_calories_intake >= 1300 )
+    	 		printf("Your total calorie intake for today has not reached your goal, remember to eat more!!\n");
+		}
+	printf("=======================================================================\n");
 }
-
 
 
 
