@@ -74,8 +74,8 @@ void inputDiet(HealthData* health_data) {
 	{
         if (health_data->diet_count < MAX_DIETS) 
 		{
-            health_data->diet[health_data->diet_count] = diet_list[choice-1]; // save the number of diets (that user enters) at health_data
-            health_data->diet_count++;	// sice user enters diets, increment diet_count and save at health_data
+            health_data->diet[health_data->diet_count] = diet_list[choice-1]; // save selected diets (that user enters) at health_data
+            health_data->diet_count++;	// sice user enters diets once, increment diet_count and save at health_data
             
 			// ToCode: to enter the total calories intake in the health data
             health_data->total_calories_intake += diet_list[choice-1].calories_intake;	// update total intaken calories 
@@ -85,8 +85,8 @@ void inputDiet(HealthData* health_data) {
 }
 
 
-/*
-void test_HealthData(const HealthData* health_data) {
+
+/*void test_HealthData(const HealthData* health_data) {
     printf("\n---- Health Data ----\n");
     printf("Total Calories Intake: %d kcal\n", health_data->total_calories_intake);
 

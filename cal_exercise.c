@@ -81,8 +81,10 @@ void inputExercise(HealthData* health_data) {
         
         if (health_data->exercise_count < MAX_EXERCISES) 
 		{
-        health_data->exercises[health_data->exercise_count] = exercise_list[choice - 1];  // save the number of exercises (that user enters) at health_data
-        health_data->exercise_count++;	// sice user enters exercises, increment exercise_count and save at health_data
+        health_data->exercises[health_data->exercise_count] = exercise_list[choice - 1];  // save selected exercises (that user enters) at health_data
+		health_data->exercises[health_data->exercise_count].calories_burned_per_minute = calories_burned;	// since we need to save calories_burned, not calories_burned_per_miniute, so save burned calories through selected exercise and duration
+
+		health_data->exercise_count++;	// since user enters exercises once, increment exercise_count and save at health_data
         
         health_data->total_calories_burned += calories_burned; 	// update total burned calories 
     	}
@@ -124,8 +126,8 @@ int main() {
 
     return 0;
 }
-
 */
+
 
 /*
     description : read the information in "excercises.txt"

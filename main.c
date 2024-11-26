@@ -19,7 +19,7 @@
 
 static int choice;
 
-int main() {
+/*int main() {
 	// To initialize the health data object
     HealthData health_data = {0};
     
@@ -71,4 +71,4 @@ int main() {
 
     return 0;
 }
-
+*/
