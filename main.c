@@ -50,12 +50,12 @@ int main() {
         switch (choice) {
             case 1:
             	inputExercise(&health_data);
-            	saveData("health_data.txt", &health_data);
+            	saveData("C:\\Users\\a\\Desktop\\Final Project\\health_data.txt", &health_data);
                 break;
                 
             case 2:
             	inputDiet(&health_data);
-            	saveData("health_data.txt", &health_data);
+            	saveData("C:\\Users\\a\\Desktop\\Final Project\\health_data.txt", &health_data);
                 break;
                 
             case 3:
@@ -63,10 +63,10 @@ int main() {
                 break;
                 
             case 4:
-            	
     			printf("Exit the system.\n");
     			printf("=======================================================================\n");
-                break;
+                return 0;
+				break;
                 
             default:
                 printf("[Error] Invalid option. \n");
