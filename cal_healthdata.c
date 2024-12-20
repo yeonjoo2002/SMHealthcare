@@ -23,7 +23,7 @@
     			3. save the total remaining calrories
 */
 
-int remained_calories = -1300;	// calculate remaining calories
+int remained_calories = -1300;	// calculate remaining calories, initial value is -1300
 
 void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
 	int i;

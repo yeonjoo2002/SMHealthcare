@@ -18,7 +18,7 @@
 #define HEALTHFILEPATH "health_data.txt"
 
 static int choice;
-extern int remained_calories;
+extern int remained_calories;	// since we use this variable at cal_healthdata.c, extern keyword is needed
 
 int main() {
 	// To initialize the health data object

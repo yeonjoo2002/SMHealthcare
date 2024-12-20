@@ -69,7 +69,7 @@ void inputDiet(HealthData* health_data) {
     printf("Choose (1-%d): ", diet_list_size + 1); 	
     scanf("%d", &choice);	// choose diet what the user wants
 	
-	if (choice == diet_list_size + 1)
+	if (choice == diet_list_size + 1)	// exit
     	return 0;
 		
 	// ToCode: to enter the selected diet in the health data

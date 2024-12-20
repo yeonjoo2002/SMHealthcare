@@ -71,7 +71,7 @@ void inputExercise(HealthData* health_data) {
     scanf("%d", &choice); 	// choose exercise what the user wants
 	
 	if (choice == exercise_list_size + 1)
-    	return 0;
+    	return 0;	//exit
     	
     // To enter the duration of the exercise
     printf("Enter the duration of the exercise (in min.): ");
