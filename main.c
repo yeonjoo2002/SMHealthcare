@@ -48,21 +48,21 @@ int main() {
         
 		// ToCode: to run the sysmtem based on the user's choice
         switch (choice) {
-            case 1:
+            case 1:		// if choose number 1, it is exercise
             	inputExercise(&health_data);
             	saveData("C:\\Users\\a\\Desktop\\Final Project\\health_data.txt", &health_data);
                 break;
                 
-            case 2:
+            case 2:		// if choose number 2, it is diet
             	inputDiet(&health_data);
             	saveData("C:\\Users\\a\\Desktop\\Final Project\\health_data.txt", &health_data);
                 break;
                 
-            case 3:
+            case 3:		// if choose number 3, display cummulative data
             	printHealthData(&health_data);
                 break;
                 
-            case 4:
+            case 4:		// if choose number 4, stop the system
     			printf("Exit the system.\n");
     			printf("=======================================================================\n");
                 return 0;
